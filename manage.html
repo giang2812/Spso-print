@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan Ly May In</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="manage.css">
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html"><h2 class="logo">BK PRINT</h2></a>
+  
+        <div class="user">
+          <div class="user_info">
+            <div class="user_icon">
+              <i class="fas fa-user"></i>
+            </div>
+  
+            <span class="user_name">Tên người dùng</span>
+          </div>
+  
+          <div class="user_info--hidden">
+            <span class="info"
+              >MSNV: <span class="info--msnv">ID01234</span></span
+            >
+            <span class="info"
+              >Tên: <span class="info--name">Nguyễn Văn Tuấn</span></span
+            >
+  
+            <div class="info-button">
+              <button type="button" class="button">Lịch sử</button>
+              <button type="button" class="button">Thay đổi thông tin</button>
+              <button type="button" class="button button_logout">
+                Đăng xuất
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
+    <article class="content">
+        <div class="management">
+            <h3 class="header">Quản Lý Máy In</h3>
+            <div class="menu">
+                <button id="addButton" onclick="openPopup()">Add Row</button>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <button id="searchButton" onclick="searchTable()">Search</button>
+                </div>
+            </div>
+
+            <div id="overlay" onclick="closePopup()"></div>
+            <div id="popup">
+              <form id="addForm">
+                <label for="data1">Data 1:</label><br />
+                <input
+                  type="text"
+                  id="data1"
+                  name="data1"
+                  placeholder="Enter Data 1"
+                /><br />
+        
+                <label for="data2">Data 2:</label><br />
+                <input
+                  type="text"
+                  id="data2"
+                  name="data2"
+                  placeholder="Enter Data 2"
+                /><br />
+        
+                <label for="data2">Data 3:</label><br />
+                <input
+                  type="text"
+                  id="data3"
+                  name="data3"
+                  placeholder="Enter Data 3"
+                /><br />
+        
+                <label for="data2">Data 4:</label><br />
+                <input
+                  type="text"
+                  id="data4"
+                  name="data2"
+                  placeholder="Enter Data 4"
+                /><br />
+        
+                <label for="data2">Data 5:</label><br />
+                <input
+                  type="text"
+                  id="data5"
+                  name="data5"
+                  placeholder="Enter Data 5"
+                /><br />
+
+        <table id="myTable" class="table table-design">
+                <thead>
+                    <tr>
+                        <th>Số thứ tự</th>
+                        <th>Mã máy in</th>
+                        <th>Địa điểm</th>
+                        <th>Tình trạng</th>
+                        <th>Loại máy</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Existing rows go here -->
+                </tbody>
+       </table>
+
+        
+
+    </article>
+        
+        <script src="manage.js"></script>
+        <script>
+            
+        </script>
+
+      
+    
+</body>
+</html>
+
+ 
+         <!-- <div class="menu">
+                <input type="value" name="Số Thứ Tự" placeholder="Số Thứ Tự" id="pnum">
+                <input type="text" name="Mã Máy In" placeholder="Mã Máy In" id="pid">
+                <input type="text" name="Địa Điểm" placeholder="Địa Điểm" id="place">
+                <input type="text" name="Tình Trạng" placeholder="Tình Trạng" id="status">
+                <input type="text" name="Loại Máy" placeholder="Loại Máy" id="type">
+                <input type="button" name="button" class="btn" value="Add" onclick="AddRow()"></input>
+            </div>
+        </div> -->

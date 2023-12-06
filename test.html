@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table with CRUD and Search</title>
+    <link rel="stylesheet" href="test.css" />
+    <style>
+      .success {
+        color: green;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
+
+    <style>
+      /* Styles for the popup */
+      #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+
+      /* Styles for the overlay/background behind the popup */
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <button onclick="searchTable()">Search</button>
+
+    <div id="searchFeedback"></div>
+
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <th>Column 3</th>
+          <th>Column 4</th>
+          <th>Column 5</th>
+          <th></th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Existing rows go here -->
+      </tbody>
+    </table>
+
+    <!-- Add Row button -->
+    <button onclick="openPopup()">Add Row</button>
+
+    <!-- Popup and overlay -->
+    <!-- Popup and overlay -->
+    <div id="overlay" onclick="closePopup()"></div>
+    <div id="popup">
+      <form id="addForm">
+        <label for="data1">Data 1:</label><br />
+        <input
+          type="text"
+          id="data1"
+          name="data1"
+          placeholder="Enter Data 1"
+        /><br />
+
+        <label for="data2">Data 2:</label><br />
+        <input
+          type="text"
+          id="data2"
+          name="data2"
+          placeholder="Enter Data 2"
+        /><br />
+
+        <label for="data2">Data 3:</label><br />
+        <input
+          type="text"
+          id="data3"
+          name="data3"
+          placeholder="Enter Data 3"
+        /><br />
+
+        <label for="data2">Data 4:</label><br />
+        <input
+          type="text"
+          id="data4"
+          name="data2"
+          placeholder="Enter Data 4"
+        /><br />
+
+        <label for="data2">Data 5:</label><br />
+        <input
+          type="text"
+          id="data5"
+          name="data5"
+          placeholder="Enter Data 5"
+        /><br />
+        <!-- Add other input fields, buttons, etc. -->
+        <!-- <input type="file" id="fileInput" accept=".xlsx, .xls"><br>
+        <input type="button" value="Import" onclick="importFile()"> -->
+        <input
+          type="button"
+          id="submitBtn"
+          value="Submit"
+          onclick="submitForm()"
+        />
+        <input type="button" value="Cancel" onclick="closePopup()" />
+      </form>
+    </div>
+
+    <ul class="pagination"></ul>
+
+
+    <script src="test.js"></script>
+    <script>
+      
+      function updateTable() {
+    var table = document.getElementById("myTable");
+    var tbody = table.querySelector("tbody");
+    var rows = Array.from(tbody.getElementsByTagName("tr"));
+
+    // Clear existing rows
+    rows.forEach(function (row) {
+      row.remove();
+    });
+
+    var startIndex = (currentPage - 1) * itemsPerPage;
+    var endIndex = startIndex + itemsPerPage;
+
+    // Add rows based on the current page
+    for (var i = startIndex; i < endIndex && i < data.length; i++) {
+      var newRow = tbody.insertRow(-1);
+      var cell1 = newRow.insertCell(0);
+      var cell2 = newRow.insertCell(1);
+      var cell3 = newRow.insertCell(2);
+      var cell4 = newRow.insertCell(3);
+      var cell5 = newRow.insertCell(4);
+      var cell6 = newRow.insertCell(5); // Actions cell
+
+      cell1.innerHTML = data[i].data1;
+      cell2.innerHTML = data[i].data2;
+      cell3.innerHTML = data[i].data3;
+      cell4.innerHTML = data[i].data4;
+      cell5.innerHTML = data[i].data5;
+
+      // Create edit and delete buttons
+      var editButton = document.createElement("button");
+      editButton.className = "editBtn";
+      editButton.innerHTML = "Edit";
+      editButton.onclick = function () {
+        editRow(newRow);
+      };
+
+      var deleteButton = document.createElement("button");
+      deleteButton.className = "deleteBtn";
+      deleteButton.innerHTML = "Delete";
+      deleteButton.onclick = function () {
+        deleteRow(newRow);
+      };
+
+      // Insert buttons into the new row
+      cell6.appendChild(editButton);
+      cell6.appendChild(deleteButton);
+    }
+
+    // Update pagination
+    updatePagination();
+  }
+
+  function updatePagination() {
+    var pagination = document.querySelector(".pagination");
+    pagination.innerHTML = "";
+
+    var totalPages = Math.ceil(data.length / itemsPerPage);
+
+    for (var i = 1; i <= totalPages; i++) {
+      var li = document.createElement("li");
+      li.textContent = i;
+      li.onclick = function () {
+        currentPage = parseInt(this.textContent);
+        updateTable();
+        updatePagination();
+      };
+
+      if (i === currentPage) {
+        li.style.fontWeight = "bold";
+      }
+
+      pagination.appendChild(li);
+    }
+  }
+    </script>
+  </body>
+</html>
